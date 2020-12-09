@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-qeuiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sarala&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="ionicons.min.css">
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.css">
+    <style>* {
+    margin: 0; 
+    padding: 0; 
+    font-family: 'Sarala', sans-serif;
+}
+
+header {
+    background-color: #1e1010; 
+}
+.nav_bar {
+    height: 100vh; 
+    width: 15%; 
+    background-color: #301f1f; 
+}
+
+.header_bar {
+    height: 15vh; 
+    width: 100%; 
+    background-color: #301f1f; 
+    border-bottom: 3px solid #000000; 
+    border-bottom-width: 85%; 
+}
+
+.nav_bar_border {
+    height: 8vh; 
+    font-size: .8vw; 
+    color: #c1c1c1; 
+    font-weight: 300;
+    opacity: 40%; 
+    display: flex; 
+    align-items: center; 
+    padding-left: 11%;
+    width: 100%; 
+    transition-duration: .2s; 
+}
+
+.nav_style {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    transform: translateY(10vh)
+}
+
+.flex_align {
+    display: flex; 
+    justify-content: center; 
+    
+}
+
+.inner_text_image {
+    width: 20%; 
+    height: auto; 
+}
+
+.nav_bar_border:hover {
+    cursor: pointer; 
+    background-color: #872626; 
+    opacity: 80%; 
+    box-sizing: border-box; 
+    border-left: 10px solid #c1c1c1; 
+    transition-duration: .2s; 
+}
+
+.home {
+    font-size: 230%; 
+    width: 20%; 
+}
+.test {
+    padding-left: 10%; 
+    border-left: .5px solid #c1c1c1; 
+}
+
+.nav_titles {
+    color: #c1c1c1; 
+    opacity: 30%; 
+    font-weight: 300;
+    padding-bottom: 1vh; 
+    padding-top: 1vh; 
+    font-size: 1.3vw;
+}
+
+.nav_titles_flex {
+    width: 100%; 
+    padding-left: 5vw; 
+}
+
+.header_line {
+    width: 100%; 
+    background-color: #000000; 
+    height: .1vh; 
+    transform: translateY(8vh); 
+}
+.logout_text {
+    position: absolute; 
+    transform: translateY(5vh); 
+    font-size: 1.1vw; 
+    color: #6b6b6b; 
+}
+
+.logout_flex {
+    display: flex; 
+    justify-content: flex-end; 
+    padding-right: 2%; 
+}
+
+.arrow {
+    position: absolute; 
+    font-size: 1.1vw; 
+    padding-left: 0.3vw; 
+}
+.logo {
+    position: absolute; 
+    width: 16vw; 
+    transform: translateY(4vh);
+    padding-left: 1%; 
+}
+
+.plus {
+    padding-left: 5%; 
+}
+
+.topic_add_text {
+    color: #c1c1c1; 
+    font-weight: 300;
+    opacity: 60%; 
+    position: absolute; 
+    transform: translateY(11vh); 
+    font-size: 1.1vw; 
+    left: 2.5%; 
+    width: 12.5%; 
+    height: 4%; 
+    transition-duration: 0.2s; 
+}
+
+.topic_add_text:hover {
+    cursor: pointer; 
+    color: #872626;
+    transition-duration: 0.2s; 
+}
+
+
+.topic_add_text_2 {
+    color: #c1c1c1; 
+    opacity: 60%; 
+    position: absolute; 
+    font-weight: 300;
+    transform: translateY(11vh); 
+    font-size: 1.1vw; 
+    left: 17%; 
+}
+
+.invis_cover {
+    position: absolute; 
+    bottom: 0; 
+    right: 0; 
+    width: 100%; 
+    height: 100%; 
+    z-index: 999; 
+    transform: translateY(7vh); 
+}
+
+.container_articles {
+    background-color: #301f1f; 
+    width: 18%; 
+    height: 23%; 
+    border-radius: 3%; 
+}
+
+.border_style {
+    position: absolute; 
+    bottom: 0; 
+    right: 0; 
+    width: 85%; 
+    height: 92%; 
+    border-left: 3px solid #000000; 
+}
+
+.container_text {
+    text-align: end; 
+    font-size: 1.6vw;
+    color: #872626; 
+    opacity: 90%; 
+    margin-top: 5%; 
+    padding-right: 2%; 
+}
+
+.time_made {
+    text-align: end; 
+    font-size: 1vw;
+    color: #c1c1c1; 
+    opacity: 40%; 
+    padding-right:2%; 
+}
+
+.description_text {
+    text-align: end; 
+    font-size: .6vw;
+    color: #c1c1c1; 
+    opacity: 40%; 
+    margin-top: 5%; 
+    padding-right: 2%; 
+}
+
+.btn_primary {
+    text-decoration: none; 
+    color: #c1c1c1; 
+    opacity: 10%; 
+    text-align: end; 
+    font-size: 0.6vw; 
+    padding-right: 2%; 
+    transition-duration: 0.6s; 
+}
+
+.btn_primary:hover {
+    color: #872626; 
+    opacity: 90%; 
+    transition-duration: 0.6s; 
+}
+
+.btn_flex {
+    display: flex; 
+    justify-content: flex-end; 
+}
+
+a {
+    text-decoration: none;
+    color: #c1c1c1;
+}
+
+a:visited {
+    color: #c1c1c1;
+    opacity: 40%;
+}
+
+.stext {
+    color: #c1c1c1; 
+    opacity: 80%; 
+    font-size: 1.3vw; 
+    margin: 3%;  
+}
+
+.sbody {
+    font-size: 0.8vw; 
+    margin-left: 7%;
+}</style>
+    <title>Test Page (D2)</title>
+    </head>
+    
+<body>
+    <header>
+        <div class="border_style">
+            <div class="invis_cover">
+                <h2 class="stext">Display Name</h2>
+                <h2 class="sbody stext"><%= user_name %></h2>
+                <h2 class="stext">Password</h2>
+                <h2 class="sbody stext">********</h2>
+            </div>
+        </div>
+        <img class="logo" src="/assets/logo_final.svg">
+        <div class="header_bar"><a href="/articles/new"><h2 class="topic_add_text">Add Topic<i class="plus ion-plus-round"></i></h2></a><h2 class="topic_add_text_2"> Topics</h2><div class="header_line"></div></div>
+        <div class="nav_bar">
+            <nav class="nav_style">
+                <div class="nav_titles_flex">
+                    <h2 class="nav_titles">Dashboard</h2>
+                </div>
+                <div class="nav_bar_border"><i class="home ion-home"></i><a href="/">Home</a></div>
+                <div class="nav_titles_flex">
+                    <h2 class="nav_titles">Account</h2>
+                </div>
+                <div class="nav_bar_border"><i class="home ion-locked"></i><a href="/security">Security</a></div>
+            </nav>
+        </div>
+    </header>
+</body>
+    
+</html>

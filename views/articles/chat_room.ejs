@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Sarala;
+        }
+
+        #chat_form {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+        #chat_form input {
+            padding: 0;
+            margin: 0;
+            width: 50%;
+        }
+        #chat_form input[type=text] {
+            width: 80%;
+        }
+        #chat_form input[type=submit] {
+            width: 20%;
+            background-color: black;
+            color: white;
+        }
+
+        .container_header {
+            height: 100vh;
+            width: 100%;
+            background-color: #1e1010;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container_header_text {
+            font-size: 2vw;
+            color: #000000;
+            opacity: 60%;
+        }
+
+        .chatroom_container {
+            width: 40%;
+            height: 80%;
+            background-color: #301f1f;
+        }
+
+        form {
+            width: 50%;
+        }
+
+        input[type=text],
+        select {
+            width: 100%;
+            padding: 12px 20px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 20%;
+            color: #ffffff;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .input_flex {
+            display: flex;
+            height: 80px;
+            width: 100%;
+            justify-content: flex-end;
+            padding: 2%;
+            align-items: flex-end;
+        }
+
+        .message_container {
+            width: 100%;
+            height: 70%;
+        }
+
+        .message_form_container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+
+        .container_mform {
+            width: 100%;
+            height: 90%;
+            border-bottom: 1px solid #000000;
+            overflow-y: scroll;
+            display: flex;
+            align-items: flex-end;
+            flex-direction: column;
+        }
+
+        .message_block {
+            width: 80%;
+            height: 15%;
+            margin-top: 5%;
+            background-color: #ededed;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+        .message_block.left {
+            align-self: baseline;
+            border-radius: 0px 12px 12px 0px;
+        }
+
+        .message_block_text {
+            font-size: 0.8vw;
+            padding-left: 1%;
+            color: #872626;
+        }
+
+        .mbody {
+            font-size: 0.9vw;
+            color: #000000;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="position: absolute; top: 3vh; left: 3vw"><a href="/">Go back</a></div>
+    <header class="container_header">
+        <div class="chatroom_container">
+            <div class="container_mform" id="chat_board">
+                <% messages.forEach(message => { %>
+                <div class="message_block <%= user_name !== message.user_name ? 'left' : ''%>">
+                        <h2 class="message_block_text">
+                        <%= message.user_name %>
+                    </h2>
+                    <h2 class="mbody message_block_text">
+                        <%= message.message %>
+                    </h2>
+                </div>
+                <% }) %>
+            </div>
+            <div class="input_flex">
+                <div class="message_form_container">
+                    <form id="chat_form">
+                        <input type="submit" id="submit" name="submit" value="send">
+                        <input type="text" id="chat_message" name="message" placeholder="Type a message...">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+    <script>
+        // ebjs Constants
+        const wsAddr = "<%= "ws://localhost:5050/chat_room/"+ room_id + "?user_name="+user_name %>";
+            const user_name = "<%= user_name %>";
+
+        // Get message tag
+        const msgTag = document.getElementById('chat_message');
+
+        // Record of chat messages
+        const chatMessages = [];
+
+        // Establish websocket server
+        const ws = new WebSocket(wsAddr);
+
+        // Update DOM with chat messages
+        const addChatMessage = message => {
+            // Find last message rendered
+            const chatboard = document.getElementById('chat_board');
+
+            // Generate new message
+            const messageDomString = `
+                <div class="message_block ${message.user_name !== user_name ? 'left' : ''}">
+                    <h2 class="message_block_text">
+                        ${message.user_name}
+                    </h2>
+                    <h2 class="mbody message_block_text">
+                        ${message.message}
+                    </h2>
+                </div>
+                `;
+
+            const msgNode = new DOMParser().parseFromString(messageDomString, "text/html");
+
+            // Add new message to the DOM
+            const newNode = msgNode.getElementsByTagName('body')[0];
+            chatboard.appendChild(newNode.children[0]);
+
+            // Scroll DOM down
+            chatboard.scrollTop = chatboard.scrollHeight
+        };
+
+        ws.onopen = function (e) {
+            const chatboard = document.getElementById('chat_board');
+            console.log("Established connection");
+
+            // Scroll DOM down
+            chatboard.scrollTop = chatboard.scrollHeight
+        };
+
+        ws.onmessage = function (e) {
+            const message = JSON.parse(e.data);
+
+            // Add to recorded messages
+            chatMessages.push(message);
+
+            // Add new DOM node
+            addChatMessage(message);
+
+            // Clear last message
+            msgTag.value = "";
+        };
+
+        // Send a message to the chatroom
+        const form = document.getElementById('chat_form');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Submit request via ws
+            const message = msgTag.value;
+
+            // Generate payload
+            const payload = {
+                user_name: user_name,
+                message: message
+            };
+            ws.send(JSON.stringify(payload));
+        });
+    </script>
+</body>
+
+</html>

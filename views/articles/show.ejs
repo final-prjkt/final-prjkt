@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    * {
+    margin: 0;
+    padding: 0; 
+    font-family: Sarala; 
+}
+.container_header {
+    height: 100vh; 
+    width: 100%; 
+    background-color: #301f1f; 
+    display: flex; 
+    align-items: center; 
+}
+
+.container_header_text {
+    font-size: 2vw; 
+    color: #000000; 
+    opacity: 60%; 
+}
+
+.header_text_container {
+    margin-left: 5%; 
+}
+
+label {
+    font-size: 1vw; 
+    color: #c1c1c1; 
+    opacity: 40%; 
+}
+
+.date_text {
+  font-size: 0.7vw;
+  color: #c1c1c1;
+  opacity: 40%;
+  margin-bottom: 2%;
+}
+
+.btn_primary {
+  background-color: #ffffff;
+  border: none;
+  color: #000000;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 4px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.btn_primary:hover {
+  background-color: #872626;
+  color: #ffffff;
+}
+  </style>
+  <title>Blog</title>
+</head>
+<body>
+
+  <header class="container_header">
+    <div class="header_text_container">
+    <h2 class="container_header_text"><%= article.title %></h2>
+    <div class="date_text">
+      <%= article.createdAt.toLocaleDateString() %>
+    </div>
+    <a href="/" class="btn_primary">All Articles</a>
+    <a href="/articles/edit/<%= article.id %>" class="btn_primary">Edit</a>
+
+    <div>
+      <%- article.sanitizedHtml %>
+    </div>
+  </div>
+</header>
+  </div>
+</body>
+</html>
